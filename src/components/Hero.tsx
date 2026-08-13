@@ -1,35 +1,77 @@
-﻿"use client";
-
-import Image from "next/image";
+import { FiArrowDown, FiGithub, FiMapPin } from "react-icons/fi";
 import { profile } from "@/data/portfolio";
 
 export default function Hero() {
   return (
-    <header className="bg-light py-5 border-bottom">
-      <div className="container">
-        <div className="row align-items-center g-4">
-          <div className="col-12 col-lg-7">
-            <h1 className="display-5 fw-bold">Soy {profile.nombre}</h1>
-            <p className="lead mb-2">{profile.rol}</p>
-            <p className="mb-0">{profile.resumen}</p>
-            <small className="text-muted d-block">{profile.ubicacion}</small>
-            <div className="mt-3 d-flex gap-2">
-              <a className="btn btn-dark" href={`mailto:${profile.email}`}>Contactar</a>
-              <a className="btn btn-outline-dark" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+    <section className="hero" id="inicio">
+      <div className="hero-glow" aria-hidden="true" />
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow">{profile.rol}</p>
+          <h1>{profile.propuesta}</h1>
+          <p className="hero-summary">{profile.resumen}</p>
+
+          <div className="hero-meta" aria-label="Ubicación y disponibilidad">
+            <span>
+              <FiMapPin aria-hidden="true" /> {profile.ubicacion}
+            </span>
+            <span className="availability">
+              <i aria-hidden="true" /> {profile.disponibilidad}
+            </span>
+          </div>
+
+          <div className="hero-actions">
+            <a className="button button-primary" href="#proyectos">
+              Ver proyectos <FiArrowDown aria-hidden="true" />
+            </a>
+            <a
+              className="button button-secondary"
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FiGithub aria-hidden="true" /> GitHub
+            </a>
+          </div>
+        </div>
+
+        <div className="api-card" aria-label="Ejemplo visual de una API REST">
+          <div className="api-card-top">
+            <span className="window-dots" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span>api/v1/viajes</span>
+          </div>
+          <div className="api-card-body">
+            <p>
+              <span className="method">POST</span>
+              <span className="endpoint">/reservas</span>
+            </p>
+            <div className="code-line">
+              <span>auth</span>
+              <strong>JWT verificado</strong>
+            </div>
+            <div className="code-line">
+              <span>reglas</span>
+              <strong>permisos por rol</strong>
+            </div>
+            <div className="code-line">
+              <span>datos</span>
+              <strong>PostgreSQL</strong>
+            </div>
+            <div className="response-line">
+              <span>201</span> Reserva creada
             </div>
           </div>
-          <div className="col-12 col-lg-5 text-center">
-            <Image
-              src="/assets/img/hero.svg"
-              alt="Líder Salinas – Desarrollador Fullstack"
-              width={800}
-              height={500}
-              className="img-fluid rounded-3 shadow-sm"
-              priority
-            />
+          <div className="api-card-footer">
+            <span>FastAPI</span>
+            <span>SQLAlchemy</span>
+            <span>Docker</span>
           </div>
         </div>
       </div>
-    </header>
+    </section>
   );
 }

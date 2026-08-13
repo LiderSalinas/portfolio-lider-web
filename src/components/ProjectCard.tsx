@@ -1,64 +1,78 @@
-﻿"use client";
-import Image from "next/image";
+import { FiArrowUpRight, FiCode, FiExternalLink } from "react-icons/fi";
 
-type Props = {
+type ProjectCardProps = {
   titulo: string;
+  categoria: string;
   descripcion: string;
-  stack: string[];
+  aporte: string;
+  stack: readonly string[];
   repoUrl: string;
-  demoUrl: string;
-  cover: string;
+  repoLabel?: string;
+  demoUrl?: string;
+  estado: string;
+  codigo: string;
+  tono: string;
+  destacado?: boolean;
 };
 
 export default function ProjectCard({
   titulo,
+  categoria,
   descripcion,
+  aporte,
   stack,
   repoUrl,
+  repoLabel = "Código",
   demoUrl,
-  cover,
-}: Props) {
+  estado,
+  codigo,
+  tono,
+  destacado = false,
+}: ProjectCardProps) {
   return (
-    <div className="card h-100 border-0 shadow-sm hover-shadow">
-      <Image
-        src={cover}
-        alt={titulo}
-        width={1200}
-        height={800}
-        className="card-img-top"
-      />
-      <div className="card-body d-flex flex-column">
-        <h5 className="card-title fw-bold">{titulo}</h5>
-        <p className="card-text text-muted">{descripcion}</p>
-
-        <div className="mb-2">
-          {Array.isArray(stack) &&
-            stack.map((s) => (
-              <span key={s} className="badge bg-secondary me-2">
-                {s}
-              </span>
-            ))}
-        </div>
-
-        <div className="mt-auto d-flex gap-2">
-          <a
-            className="btn btn-outline-dark btn-sm"
-            href={repoUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Código
-          </a>
-          <a
-            className="btn btn-primary btn-sm"
-            href={demoUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Demo
-          </a>
+    <article className={`project-card ${destacado ? "project-card-featured" : ""}`}>
+      <div className={`project-visual project-visual-${tono}`} aria-hidden="true">
+        <span className="project-code">{codigo}</span>
+        <div className="project-terminal">
+          <i />
+          <i />
+          <i />
         </div>
       </div>
-    </div>
+
+      <div className="project-content">
+        <div className="project-heading">
+          <div>
+            <p className="project-category">{categoria}</p>
+            <h3>{titulo}</h3>
+          </div>
+          <span className="project-status">{estado}</span>
+        </div>
+
+        <p className="project-description">{descripcion}</p>
+        <p className="project-contribution">
+          <strong>Mi aporte:</strong> {aporte}
+        </p>
+
+        <ul className="tag-list" aria-label={`Tecnologías de ${titulo}`}>
+          {stack.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <div className="project-links">
+          <a href={repoUrl} target="_blank" rel="noopener noreferrer">
+            <FiCode aria-hidden="true" /> {repoLabel}
+            <FiArrowUpRight className="link-arrow" aria-hidden="true" />
+          </a>
+          {demoUrl ? (
+            <a href={demoUrl} target="_blank" rel="noopener noreferrer">
+              <FiExternalLink aria-hidden="true" /> Ver producto
+              <FiArrowUpRight className="link-arrow" aria-hidden="true" />
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </article>
   );
 }

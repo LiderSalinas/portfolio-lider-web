@@ -1,17 +1,34 @@
-﻿"use client";
+import { FiArrowUpRight } from "react-icons/fi";
+
+const navItems = [
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#experiencia", label: "Experiencia" },
+  { href: "#stack", label: "Stack" },
+];
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-      <div className="container">
-        <a className="navbar-brand fw-bold fs-5" href="#">
-          Líder Salinas <span className="text-primary">| Fullstack Dev</span>
+    <header className="site-header">
+      <nav className="nav container" aria-label="Navegación principal">
+        <a className="brand" href="#inicio" aria-label="Ir al inicio">
+          <span className="brand-mark" aria-hidden="true">
+            LS
+          </span>
+          <span>Líder Salinas</span>
         </a>
-        <div className="d-flex gap-3">
-          <a className="nav-link text-white" href="#projects">Proyectos</a>
-          <a className="nav-link text-white" href="mailto:rubensalinas05@gmail.com">Contacto</a>
+
+        <div className="nav-links">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href}>
+              {item.label}
+            </a>
+          ))}
         </div>
-      </div>
-    </nav>
+
+        <a className="nav-cta" href="#contacto">
+          Contacto <FiArrowUpRight aria-hidden="true" />
+        </a>
+      </nav>
+    </header>
   );
 }
