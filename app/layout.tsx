@@ -1,5 +1,20 @@
 import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-plex-sans",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-plex-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-lider-web.vercel.app"),
@@ -12,4 +27,4 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true }, icons: { icon: "/favicon.ico" },
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#07131f" };
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="es"><body>{children}</body></html>; }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="es" className={`${ibmPlexSans.variable} ${ibmPlexMono.variable}`}><body>{children}</body></html>; }

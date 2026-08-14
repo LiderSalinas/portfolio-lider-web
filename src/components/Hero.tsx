@@ -3,7 +3,7 @@ import { profile } from "@/data/portfolio";
 
 export default function Hero() {
   return <section className="hero" id="inicio"><div className="hero-orbit" aria-hidden="true" /><div className="container hero-grid">
-    <div className="hero-copy"><p className="hero-name">{profile.nombre}</p><p className="eyebrow">{profile.rol}</p><h1>{profile.propuesta}</h1><p className="hero-summary">{profile.resumen}</p>
+    <div className="hero-copy"><p className="hero-name">{profile.nombre}</p><p className="eyebrow">{profile.rol}</p><h1>Construyo la lógica que hace funcionar <span>productos digitales.</span></h1><p className="hero-summary">{profile.resumen}</p>
       <div className="hero-meta" aria-label="Ubicación y disponibilidad"><span><FiMapPin aria-hidden="true" /> {profile.ubicacion} · Remoto</span><span className="availability"><i aria-hidden="true" /> {profile.disponibilidad}</span></div>
       <div className="hero-actions"><a className="button button-primary" href="#proyectos">Ver proyectos <FiArrowDown aria-hidden="true" /></a><a className="button button-secondary" href={profile.github} target="_blank" rel="noopener noreferrer"><FiGithub aria-hidden="true" /> GitHub</a></div>
     </div>
