@@ -8,10 +8,20 @@ export default function Hero() {
       <div className="hero-proof" aria-label="Resultados profesionales"><span><strong>10+</strong> módulos en NexoVet</span><span><strong>78</strong> pruebas de backend</span><span><strong>37</strong> flujos de navegador</span></div>
       <div className="hero-actions"><a className="button button-primary" href="#proyectos">Ver proyectos <FiArrowDown aria-hidden="true" /></a><a className="button button-secondary" href={profile.github} target="_blank" rel="noopener noreferrer"><FiGithub aria-hidden="true" /> GitHub</a></div>
     </div>
-    <div className="api-wrap" aria-label="Representación visual de una API REST"><div className="api-shadow" aria-hidden="true" /><div className="api-card">
-      <div className="api-card-top"><span className="window-dots" aria-hidden="true"><i /><i /><i /></span><span>api/v1/productos</span></div>
-      <div className="api-card-body"><p><span className="method">GET</span><span className="endpoint">/api/v1/clinicas/dashboard</span></p><div className="code-line"><span>auth</span><strong>rol verificado</strong></div><div className="code-line"><span>tenant</span><strong>clínica aislada</strong></div><div className="code-line"><span>datos</span><strong>PostgreSQL</strong></div><div className="response-line"><span>200</span> NexoVet listo para operar</div></div>
-      <div className="api-card-footer"><span>FastAPI</span><span>Next.js</span><span>Docker</span></div>
-    </div><span className="api-caption">Proyecto destacado · NexoVet</span></div>
+    <div className="hero-product" aria-label="Vista conceptual del sistema NexoVet">
+      <div className="product-glow" aria-hidden="true" />
+      <div className="product-window">
+        <div className="product-topbar"><span className="product-logo">N</span><strong>NexoVet</strong><span className="product-live"><i /> Sistema operativo</span></div>
+        <div className="product-shell">
+          <aside aria-hidden="true"><i className="active" /><i /><i /><i /><i /></aside>
+          <div className="product-dashboard"><div className="product-welcome"><span>Panel general</span><strong>Buenos días, Líder</strong></div>
+            <div className="product-stats"><span><small>Turnos hoy</small><strong>12</strong></span><span><small>Pacientes</small><strong>248</strong></span><span><small>Stock bajo</small><strong>04</strong></span></div>
+            <div className="product-content"><div className="product-chart"><span>Actividad semanal</span><div className="chart-bars" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div></div><div className="product-next"><span>Próximo turno</span><strong>10:30</strong><small>Luna · Control</small></div></div>
+          </div>
+        </div>
+      </div>
+      <div className="floating-card floating-security"><span>✓</span><div><strong>Acceso seguro</strong><small>Roles y auditoría</small></div></div>
+      <div className="floating-card floating-tests"><strong>115</strong><small>pruebas automatizadas</small></div>
+    </div>
   </div></section>;
 }
