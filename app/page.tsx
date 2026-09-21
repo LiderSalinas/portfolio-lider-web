@@ -16,10 +16,10 @@ export default function Home() {
       <Navbar />
       <main id="contenido">
         <Hero />
-        <About />
         <ProjectsGrid />
-        <Experience />
         <Skills />
+        <About />
+        <Experience />
         <Contact />
       </main>
       <Footer />
