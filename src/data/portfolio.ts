@@ -5,6 +5,8 @@ export const profile = {
   resumen: "Construyo sistemas completos para negocios: desde la API y la base de datos hasta una experiencia web clara, segura y lista para usarse.",
   bio: "Soy desarrollador Backend & Full Stack de Paraguay. Me gusta entender el problema antes de escribir código y convertir procesos complejos en productos claros, útiles y mantenibles.",
   email: "rubensalinas05@gmail.com",
+  whatsapp: "+595 975 779293",
+  whatsappUrl: "https://wa.me/595975779293",
   linkedin: "https://www.linkedin.com/in/lider-salinas-blanco-353903401",
   github: "https://github.com/LiderSalinas",
   ubicacion: "Paraguay",
