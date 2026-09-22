@@ -95,5 +95,18 @@ function ExperienceScene() {
 }
 
 function ContactScene() {
-  return <div className="contact-scene"><div className="contact-card-stage"><article className="contact-card"><div className="contact-card-screen"><div className="contact-mark" aria-hidden="true"><i /><i /><i /></div></div><h2>{profile.nombre}</h2><p>{profile.rol}</p><div className="contact-card-details"><a href={profile.whatsappUrl} target="_blank" rel="noopener noreferrer"><span><FiMessageCircle /> WhatsApp</span><strong>{profile.whatsapp} <FiArrowUpRight /></strong></a><a href={"mailto:" + profile.email}><span><FiMail /> Correo electrónico</span><strong>{profile.email}</strong></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><FiLinkedin /> LinkedIn</span><strong>Ver perfil <FiArrowUpRight /></strong></a><div><span><FiMapPin /> Ubicación</span><strong>{profile.ubicacion} · Remoto</strong></div></div><footer>Disponible para nuevos proyectos</footer></article></div></div>;
+  const moveCard = (event: React.PointerEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    event.currentTarget.style.setProperty("--pointer-x", `${-y * 9}deg`);
+    event.currentTarget.style.setProperty("--pointer-y", `${x * 12}deg`);
+  };
+
+  const resetCard = (event: React.PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.setProperty("--pointer-x", "0deg");
+    event.currentTarget.style.setProperty("--pointer-y", "0deg");
+  };
+
+  return <div className="contact-scene"><div className="contact-card-stage" onPointerMove={moveCard} onPointerLeave={resetCard}><article className="contact-card"><div className="contact-card-screen"><div className="contact-mark" aria-hidden="true"><i /><i /><i /></div></div><h2>{profile.nombre}</h2><p>{profile.rol}</p><div className="contact-card-details"><a href={profile.whatsappUrl} target="_blank" rel="noopener noreferrer"><span><FiMessageCircle /> WhatsApp</span><strong>{profile.whatsapp} <FiArrowUpRight /></strong></a><a href={"mailto:" + profile.email}><span><FiMail /> Correo electrónico</span><strong>{profile.email}</strong></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><FiLinkedin /> LinkedIn</span><strong>Ver perfil <FiArrowUpRight /></strong></a><div><span><FiMapPin /> Ubicación</span><strong>{profile.ubicacion} · Remoto</strong></div></div><footer>Disponible para nuevos proyectos</footer></article></div></div>;
 }
