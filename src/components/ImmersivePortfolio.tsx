@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail, FiMapPin } from "react-icons/fi";
+import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail, FiMapPin, FiMessageCircle } from "react-icons/fi";
 import { experience, profile, projects, skillGroups } from "@/data/portfolio";
 
 const scenes = [
@@ -95,5 +95,5 @@ function ExperienceScene() {
 }
 
 function ContactScene() {
-  return <div className="contact-scene"><div className="contact-card-stage"><article className="contact-card"><div className="contact-card-screen"><div className="contact-mark" aria-hidden="true"><i /><i /><i /></div></div><h2>{profile.nombre}</h2><p>{profile.rol}</p><div className="contact-card-details"><a href={"mailto:" + profile.email}><span><FiMail /> Correo electrónico</span><strong>{profile.email}</strong></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><FiLinkedin /> LinkedIn</span><strong>Ver perfil <FiArrowUpRight /></strong></a><div><span><FiMapPin /> Ubicación</span><strong>{profile.ubicacion} · Remoto</strong></div></div><footer>Disponible para nuevos proyectos</footer></article></div></div>;
+  return <div className="contact-scene"><div className="contact-card-stage"><article className="contact-card"><div className="contact-card-screen"><div className="contact-mark" aria-hidden="true"><i /><i /><i /></div></div><h2>{profile.nombre}</h2><p>{profile.rol}</p><div className="contact-card-details"><a href={profile.whatsappUrl} target="_blank" rel="noopener noreferrer"><span><FiMessageCircle /> WhatsApp</span><strong>{profile.whatsapp} <FiArrowUpRight /></strong></a><a href={"mailto:" + profile.email}><span><FiMail /> Correo electrónico</span><strong>{profile.email}</strong></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><FiLinkedin /> LinkedIn</span><strong>Ver perfil <FiArrowUpRight /></strong></a><div><span><FiMapPin /> Ubicación</span><strong>{profile.ubicacion} · Remoto</strong></div></div><footer>Disponible para nuevos proyectos</footer></article></div></div>;
 }
