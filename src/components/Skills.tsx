@@ -1,3 +1,4 @@
-import { SiDocker,SiFastapi,SiFlutter,SiGit,SiNextdotjs,SiPostgresql,SiPython,SiReact,SiTailwindcss,SiTypescript } from "react-icons/si";
-const skills=[{n:"Python",i:SiPython},{n:"FastAPI",i:SiFastapi},{n:"TypeScript",i:SiTypescript},{n:"React",i:SiReact},{n:"Next.js",i:SiNextdotjs},{n:"Flutter",i:SiFlutter},{n:"PostgreSQL",i:SiPostgresql},{n:"Docker",i:SiDocker},{n:"Git",i:SiGit},{n:"Tailwind",i:SiTailwindcss}];
-export default function Skills(){return <section className="stack-section" id="stack"><div className="container stack-layout"><div><h2>Tecnologías</h2><p>Herramientas que utilizo para construir soluciones de calidad.</p></div><div className="tech-grid">{skills.map(({n,i:Icon})=><div className="tech" key={n}><span><Icon/></span><small>{n}</small></div>)}</div></div></section>}
+import { FiCheckCircle } from "react-icons/fi";
+import { skillGroups } from "@/data/portfolio";
+
+export default function Skills(){return <section className="section skills-section" id="stack"><div className="container"><div className="section-title"><span>Mis habilidades</span><h2>Experiencia técnica</h2></div><div className="skills-grid">{skillGroups.map(group=><article className="skill-card" key={group.titulo}><span className="skill-index">0{skillGroups.indexOf(group)+1}</span><h3>{group.titulo}</h3><p>{group.descripcion}</p><ul>{group.items.map(item=><li key={item}><FiCheckCircle/><span>{item}</span></li>)}</ul></article>)}</div></div></section>}
