@@ -1,5 +1,16 @@
-import { FiDownload } from "react-icons/fi";
+import { FiBriefcase, FiCode, FiHome, FiMail, FiUser } from "react-icons/fi";
 
-const navItems = [{href:"#inicio",label:"Inicio"},{href:"#sobre-mi",label:"Sobre mí"},{href:"#proyectos",label:"Proyectos"},{href:"#stack",label:"Tecnologías"},{href:"#experiencia",label:"Experiencia"},{href:"#contacto",label:"Contacto"}];
+const navItems = [
+  { href: "#inicio", label: "Inicio", icon: FiHome },
+  { href: "#sobre-mi", label: "Sobre mí", icon: FiUser },
+  { href: "#stack", label: "Tecnologías", icon: FiCode },
+  { href: "#proyectos", label: "Proyectos", icon: FiBriefcase },
+  { href: "#contacto", label: "Contacto", icon: FiMail },
+];
 
-export default function Navbar(){return <header className="site-header"><nav className="nav container" aria-label="Navegación principal"><a className="brand" href="#inicio"><span className="brand-mark">LS</span><span><b>Líder Salinas</b><small>Full Stack Developer</small></span></a><div className="nav-links">{navItems.map(item=><a key={item.href} href={item.href}>{item.label}</a>)}</div><details className="mobile-menu"><summary aria-label="Abrir menú"><span/><span/><span/></summary><div className="mobile-menu-panel">{navItems.map(item=><a key={item.href} href={item.href}>{item.label}</a>)}</div></details><a className="nav-cta" href="#contacto"><FiDownload/> Contacto</a></nav></header>}
+export default function Navbar() {
+  return <header className="site-header">
+    <div className="topbar container"><a className="wordmark" href="#inicio">Líder<span>.</span></a><span className="topbar-role">Backend · Full Stack · Paraguay</span><span className="theme-dot" aria-hidden="true" /></div>
+    <nav className="nav-dock" aria-label="Navegación principal">{navItems.map(({ href, label, icon: Icon }) => <a key={href} href={href} aria-label={label} title={label}><Icon /><span>{label}</span></a>)}</nav>
+  </header>;
+}
