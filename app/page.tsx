@@ -1,28 +1,5 @@
-import Contact from "@/components/Contact";
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
-import ProjectsGrid from "@/components/ProjectsGrid";
-import Skills from "@/components/Skills";
+import ImmersivePortfolio from "@/components/ImmersivePortfolio";
 
 export default function Home() {
-  return (
-    <>
-      <a className="skip-link" href="#contenido">
-        Saltar al contenido
-      </a>
-      <Navbar />
-      <main id="contenido">
-        <Hero />
-        <About />
-        <Skills />
-        <ProjectsGrid />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
-    </>
-  );
+  return <ImmersivePortfolio />;
 }
