@@ -117,14 +117,15 @@ a { color: inherit; text-decoration: none; }
 
 /* Contact — dimensional card inspired by the reference */
 .scene-contacto { background: #251b22; }
-.scene-contacto::before { background: linear-gradient(141deg, transparent 0 55%, #4b2030 55% 74%, #0d171a 74%); opacity: 1; }
+.scene-contacto::before { animation: contact-background 14s ease-in-out infinite; background: linear-gradient(141deg, transparent 0 55%, #4b2030 55% 74%, #0d171a 74%); inset: -7%; opacity: 1; }
 .scene-contacto .scene-grid { display: none; }
 .contact-scene { height: 100%; }
-.contact-card-stage { align-items: center; display: flex; height: 100%; justify-content: center; perspective: 1300px; }
-.contact-card { background: #6d2141; border: 10px solid #73183f; box-shadow: 18px 12px 0 #47152c, 30px 26px 70px rgba(0,0,0,.38); color: #291b22; min-height: 550px; padding: 15px; position: relative; transform: rotateY(-9deg) rotateZ(2.5deg); transform-style: preserve-3d; width: 315px; }
+.contact-card-stage { --pointer-x: 0deg; --pointer-y: 0deg; align-items: center; display: flex; height: 100%; justify-content: center; perspective: 1300px; }
+.contact-card { animation: contact-card-enter 1.15s cubic-bezier(.16,1,.3,1) both, contact-card-float 6.5s ease-in-out 1.15s infinite; background: #6d2141; border: 10px solid #73183f; box-shadow: 18px 12px 0 #47152c, 30px 26px 70px rgba(0,0,0,.38); color: #291b22; min-height: 550px; padding: 15px; position: relative; transform-style: preserve-3d; transition: filter .35s ease; width: 315px; will-change: transform; }
+.contact-card:hover { filter: brightness(1.08); }
 .contact-card::before { background: #8f2853; content: ""; height: 100%; left: 100%; position: absolute; top: -4px; transform: rotateY(90deg); transform-origin: left; width: 28px; }
 .contact-card-screen { align-items: center; background: #10191c; border: 11px solid #d3a5b6; display: flex; height: 170px; justify-content: center; }
-.contact-mark { height: 78px; position: relative; transform: rotate(30deg); width: 78px; }
+.contact-mark { animation: contact-mark-motion 5.5s ease-in-out infinite; height: 78px; position: relative; transform: rotate(30deg); transform-style: preserve-3d; width: 78px; }
 .contact-mark i { clip-path: polygon(50% 0, 100% 28%, 82% 85%, 22% 100%, 0 40%); inset: 0; position: absolute; }
 .contact-mark i:nth-child(1) { background: #df1832; transform: translate(-12px,-5px); }
 .contact-mark i:nth-child(2) { background: #355e66; transform: translate(12px,3px) scale(.82); }
@@ -137,6 +138,10 @@ a { color: inherit; text-decoration: none; }
 .contact-card-details span { align-items: center; color: #725263; display: flex; font-family: var(--mono); font-size: .52rem; gap: 7px; text-transform: uppercase; }
 .contact-card-details strong { align-items: center; color: #291b22; display: flex; font-family: var(--mono); font-size: .64rem; gap: 7px; margin-top: 5px; }
 .contact-card footer { border-top: 1px solid rgba(38,22,29,.35); color: #39232e; font-family: var(--mono); font-size: .5rem; letter-spacing: .08em; margin-top: 18px; padding: 10px 4px 0; text-transform: uppercase; }
+@keyframes contact-card-enter { from { opacity: 0; transform: translate3d(120px, 90px, -260px) rotateY(-42deg) rotateZ(11deg); } to { opacity: 1; transform: translate3d(0,0,0) rotateX(var(--pointer-x)) rotateY(calc(-9deg + var(--pointer-y))) rotateZ(2.5deg); } }
+@keyframes contact-card-float { 0%,100% { transform: translate3d(0,0,0) rotateX(var(--pointer-x)) rotateY(calc(-9deg + var(--pointer-y))) rotateZ(2.5deg); } 50% { transform: translate3d(0,-18px,34px) rotateX(calc(2deg + var(--pointer-x))) rotateY(calc(-4deg + var(--pointer-y))) rotateZ(.5deg); } }
+@keyframes contact-mark-motion { 0%,100% { transform: rotate(30deg) translateZ(12px); } 50% { transform: rotate(390deg) translateZ(32px) scale(1.08); } }
+@keyframes contact-background { 0%,100% { transform: translate3d(-1%,1%,0) rotate(0); } 50% { transform: translate3d(2%,-2%,0) rotate(.8deg); } }
 
 @media (max-width: 900px) {
   .immersive-shell { grid-template-columns: 218px 1fr; }
@@ -184,10 +189,13 @@ a { color: inherit; text-decoration: none; }
   .stack-orbits article { transform: none; }
   .experience-scene > article, .education-line { margin-left: 0; }
   .contact-card-stage { align-items: flex-start; padding-top: 8px; }
-  .contact-card { min-height: 475px; padding: 12px; transform: rotateY(-5deg) rotateZ(1.5deg) scale(.84); transform-origin: top center; width: 300px; }
+  .contact-card { animation-name: contact-card-enter-mobile, contact-card-float-mobile; min-height: 475px; padding: 12px; transform-origin: top center; width: 300px; }
   .contact-card-screen { height: 140px; }
   .contact-card-details > * { min-height: 66px; padding: 12px 15px; }
 }
+
+@keyframes contact-card-enter-mobile { from { opacity: 0; transform: translate3d(45px,80px,-140px) rotateY(-24deg) rotateZ(8deg) scale(.76); } to { opacity: 1; transform: rotateY(-5deg) rotateZ(1.5deg) scale(.84); } }
+@keyframes contact-card-float-mobile { 0%,100% { transform: translateY(0) rotateY(-5deg) rotateZ(1.5deg) scale(.84); } 50% { transform: translateY(-12px) rotateY(0) rotateZ(-.5deg) scale(.86); } }
 
 @media (max-width: 380px) {
   .side-socials a:nth-child(2) { display: none; }
