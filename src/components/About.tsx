@@ -1,24 +1,16 @@
-import { FiDatabase, FiLayers, FiMapPin, FiRadio, FiServer, FiTerminal } from "react-icons/fi";
+import Image from "next/image";
+import { FiAward, FiBriefcase, FiHeadphones, FiMapPin } from "react-icons/fi";
 import { profile } from "@/data/portfolio";
 
-const details = [
-  { icon: FiTerminal, label: "Especialidad", value: profile.especialidad },
-  { icon: FiMapPin, label: "Ubicación", value: `${profile.ubicacion} · Remoto` },
-  { icon: FiRadio, label: "Disponibilidad", value: profile.disponibilidad },
-];
-
-const specialties = [
-  { icon: FiServer, title: "APIs y backend", text: "Arquitectura, autenticación, reglas de negocio y servicios mantenibles." },
-  { icon: FiLayers, title: "Productos full stack", text: "Interfaz, backend y base de datos conectados como un solo producto." },
-  { icon: FiDatabase, title: "Integraciones y datos", text: "PostgreSQL, servicios externos, automatizaciones y flujos de información." },
+const stats = [
+  { icon: FiAward, value: "Analista", label: "de Sistemas" },
+  { icon: FiBriefcase, value: "4+", label: "productos reales" },
+  { icon: FiHeadphones, value: "Remoto", label: "disponible" },
 ];
 
 export default function About() {
-  return <section className="section about-section" id="sobre-mi"><div className="container about-grid">
-    <div className="portrait" aria-label="Monograma de Líder Salinas"><span>LS</span><small>Backend / Full Stack</small></div>
-    <div className="about-copy"><p className="eyebrow">Sobre mí</p><h2>Tecnología con criterio, cercanía y propósito.</h2><p className="about-lead">{profile.bio}</p><p className="about-method">Mi forma de trabajar: {profile.formaDeTrabajo.toLowerCase()}.</p>
-      <dl className="profile-details">{details.map(({ icon: Icon, label, value }) => <div key={label}><Icon aria-hidden="true" /><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-    </div>
-    <div className="specialties" aria-labelledby="specialties-title"><p className="specialties-kicker" id="specialties-title">Cómo puedo aportar</p><div className="specialties-grid">{specialties.map(({ icon: Icon, title, text }) => <article className="specialty-card" key={title}><Icon aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div>
-  </div></section>;
+  return <section className="section about-section" id="sobre-mi"><div className="container"><div className="section-title"><span>Mi historia</span><h2>Sobre mí</h2></div><div className="about-grid">
+    <div className="about-photo"><Image src="/assets/hero/lider-cerro.jpg" alt="Líder Salinas en un ambiente informal" fill sizes="(max-width: 760px) 90vw, 360px" /></div>
+    <div className="about-copy"><div className="about-stats">{stats.map(({ icon: Icon, value, label }) => <article key={label}><Icon /><strong>{value}</strong><span>{label}</span></article>)}</div><p>{profile.bio} Construyo APIs, productos web y aplicaciones móviles pensando tanto en el funcionamiento como en la experiencia de quien los usa.</p><p className="location"><FiMapPin /> {profile.ubicacion} · trabajo remoto</p><a className="text-link" href="#contacto">Hablemos de tu proyecto →</a></div>
+  </div></div></section>;
 }
