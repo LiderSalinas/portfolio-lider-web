@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail, FiMapPin } from "react-icons/fi";
 import { experience, profile, projects, skillGroups } from "@/data/portfolio";
 
 const scenes = [
@@ -30,6 +30,12 @@ export default function ImmersivePortfolio() {
     window.history.replaceState(null, "", "#" + id);
   };
 
+  const sharePortfolio = async () => {
+    const shareData = { title: "Portfolio de Líder Salinas", text: "Backend & Full Stack Developer", url: window.location.origin };
+    if (navigator.share) await navigator.share(shareData);
+    else await navigator.clipboard.writeText(window.location.origin);
+  };
+
   return <main className="immersive-shell" style={{ "--scene-accent": current.accent } as React.CSSProperties}>
     <aside className="side-panel">
       <button className="identity" onClick={() => selectScene("inicio")} aria-label="Ir al inicio">
@@ -38,6 +44,7 @@ export default function ImmersivePortfolio() {
       </button>
       <nav className="scene-nav" aria-label="Secciones del portfolio">
         {scenes.slice(1).map((scene) => <button key={scene.id} className={active === scene.id ? "active" : ""} style={{ "--item-accent": scene.accent } as React.CSSProperties} onClick={() => selectScene(scene.id)} aria-current={active === scene.id ? "page" : undefined}><i aria-hidden="true" /><span>{scene.label}</span></button>)}
+        <button className="share-nav" style={{ "--item-accent": "#355e66" } as React.CSSProperties} onClick={sharePortfolio}><i aria-hidden="true" /><span>Compartir</span></button>
       </nav>
       <div className="side-socials">
         <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FiGithub /></a>
@@ -88,5 +95,5 @@ function ExperienceScene() {
 }
 
 function ContactScene() {
-  return <div className="contact-scene"><div className="scene-heading"><span>05 / HABLEMOS</span><h2>Contacto</h2></div><p>¿Tenés un proyecto, una oportunidad remota o un proceso que necesita una mejor solución?</p><h3>Construyamos algo útil.</h3><div><a href={"mailto:" + profile.email}><FiMail /> {profile.email}</a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><FiLinkedin /> LinkedIn <FiArrowUpRight /></a></div></div>;
+  return <div className="contact-scene"><div className="contact-card-stage"><article className="contact-card"><div className="contact-card-screen"><div className="contact-mark" aria-hidden="true"><i /><i /><i /></div></div><h2>{profile.nombre}</h2><p>{profile.rol}</p><div className="contact-card-details"><a href={"mailto:" + profile.email}><span><FiMail /> Correo electrónico</span><strong>{profile.email}</strong></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><FiLinkedin /> LinkedIn</span><strong>Ver perfil <FiArrowUpRight /></strong></a><div><span><FiMapPin /> Ubicación</span><strong>{profile.ubicacion} · Remoto</strong></div></div><footer>Disponible para nuevos proyectos</footer></article></div></div>;
 }
